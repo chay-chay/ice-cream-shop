@@ -11,4 +11,19 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  get "/ice_creams" do
+    @ice_creams = IceCream.all
+    erb :ice_creams
+  end
+
+  get "/ice_creams/new" do
+    erb :new
+  end
+
+  post '/ice_creams' do
+    ice = IceCream.new(params)
+    ice.save 
+    redirect "/ice_creams"
+  end
+
 end
